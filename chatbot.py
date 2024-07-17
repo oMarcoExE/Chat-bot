@@ -12,19 +12,31 @@ def listModelsAI():
             print(m.name)
     
 
-def configAI():
+def configAI(modeloAI):
     config = {
-        "candidate_temperatue": 1,
+        "candidate_count": 1,
         "temperature": 0.5,
     }
 
     seguranca = {
         "Harassment": "BLOCK_NONE",
-        "Violence": "BLOCK_NONE",
-        "Hate speech": "BLOCK_NONE",
-        "Hate speech or offensive language": "BLOCK_ALL",
+        "HATE": "BLOCK_NONE",
+        "SEXUAL": "BLOCK_NONE",
+        "DANGEROUS": "BLOCK_NONE",
     }
+
+    model = genai.GenerativeModel(model_name= modeloAI,
+                                generation_config= config,
+                                safety_settings= seguranca) 
+    
+    return model
+
 
 
 listModelsAI()
+modeloAI = input("Digite qual modelo deseja utilizar: ")
 
+model = configAI(modeloAI)
+
+response = model.generate_content("Me explique em 3 paragrafos LLM")
+print(response.text)
