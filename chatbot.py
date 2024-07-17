@@ -4,12 +4,10 @@ keyUSER = input("Insert your gemini key: ")
 
 api_key = keyUSER
 
-genai.set_api_key(api_key)
-
 genai.configure(api_key=api_key)
 
 def listModelsAI():
-    for m in genai.Model.list():
+    for m in genai.list_models():
         if 'generateContent' in m.supported_generation_methods:
             print(m.name)
     
@@ -27,4 +25,6 @@ def configAI():
         "Hate speech or offensive language": "BLOCK_ALL",
     }
 
+
+listModelsAI()
 
