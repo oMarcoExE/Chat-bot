@@ -1,5 +1,5 @@
-#Ai chat bot
-###Build your AI
+# Ai chat bot
+### Build your AI
 
 Aqui será possivel voce configurar o tipo de ai que deseja utilizar(tudo baseado no gemini do google)
 - Selecione o temperamente da Inteligencia Artifical
