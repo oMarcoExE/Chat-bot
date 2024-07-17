@@ -38,5 +38,11 @@ modeloAI = input("Digite qual modelo deseja utilizar: ")
 
 model = configAI(modeloAI)
 
-response = model.generate_content("Me explique em 3 paragrafos LLM")
-print(response.text)
+chat = model.start_chat(history=[])
+
+prompt = input("Esperando prompt: ")
+
+while prompt != "Fim":
+  response = chat.send_message(prompt)
+  print(">> ", response.text, "\n")
+  prompt = input("Esperando prompt: ")
