@@ -19,20 +19,46 @@ def MainMenu():
 
 
 def listModelsAI():
-    for m in genai.list_models():
-        if 'generateContent' in m.supported_generation_methods:
-            print(m.name)
+
+    modelos = [
+        "gemini-1.0-pro",
+        "gemini-1.0-pro-latest",
+        "gemini-1.0-pro-vision-latest",
+        "gemini-1.5-flash",
+        "gemini-1.5-flash-latest",
+        "gemini-1.5-pro",
+        "gemini-1.5-pro-latest",
+        "gemini-pro",
+        "gemini-pro-vision",
+    ]
+    for m, i in enumerate(modelos, start=1):
+        print(f"{m}- {i}")
+
+    #for m in genai.list_models():
+    #    if 'generateContent' in m.supported_generation_methods:
+    #        print(m.name)
     
 
 def BuildAI(model):
 
     listModelsAI()
-    modeloAI = input("Digite qual modelo deseja utilizar: ")
+    optionModel = int(input("Digite qual n° de modelo deseja utilizar? (1, 2, 3...): "))
+    match(optionModel):
+        case 1: modeloAI = "gemini-1.0-pro"
+        case 2: modeloAI = "gemini-1.0-pro-latest"
+        case 3: modeloAI = "gemini-1.0-pro-vision-latest"
+        case 4: modeloAI = "gemini-1.5-flash"
+        case 5: modeloAI = "gemini-1.5-flash-latest"
+        case 6: modeloAI = "gemini-1.5-pro"
+        case 7: modeloAI = "gemini-1.5-pro-latest"
+        case 8: modeloAI = "gemini-pro"
+        case 9: modeloAI = "gemini-pro-vision"
+        case _: print("Modelo não encontrado.")
 
+    print(modeloAI)
 
-    canditade_count = input("Quantas resposta deseja obter ao fazer uma pergunta? (Candidate count): ")
-    temperature = input("Defina niveis de criatividade/originalidade da sua AI(Vaolores de 0,1 a 1)? (Temperature): ")
-
+    canditade_count = int(input("Quantas resposta deseja obter ao fazer uma pergunta? (Candidate count): "))
+    temperature = float(input("Defina niveis de criatividade/originalidade da sua AI(Vaolores de 0.1 a 1)? (Temperature): "))
 
     config = {
         "candidate_count": canditade_count,
