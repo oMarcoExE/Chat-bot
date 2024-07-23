@@ -1,13 +1,17 @@
 import google.generativeai as genai
 import os
+import textwrap
 
 keyUSER = input("Insert your gemini key: ")
-
+if keyUSER == "help":
+    print("Não sabe como conseguir sua gemini key? Sem problemas!")
+    print("")
 api_key = keyUSER
 
 genai.configure(api_key=api_key)
 
 def MainMenu():
+    os.system('cls')
     print("Bem vindo á sua AI:")
     print("---------------------")
     print("1. Construa sua AI(Configure sua AI parte a parte)")
@@ -16,6 +20,11 @@ def MainMenu():
     print("-----------------------")
     print("\n")
 
+    print("Comandos AI BOT")
+    print("\n")
+    print("Digite << Fim >> Para finalizar a conversa e voltar para o menu")
+
+    return int(input("Selecione sua opcção -> "))
 
 
 def listModelsAI():
@@ -38,7 +47,6 @@ def listModelsAI():
     #    if 'generateContent' in m.supported_generation_methods:
     #        print(m.name)
     
-
 def BuildAI(model):
 
     listModelsAI()
@@ -111,40 +119,38 @@ def configAI():
     
     return model
 
-
 model = configAI()
 
-MainMenu()
-option = int(input("Selecione sua opcção -> "))
-match(option):
-    case 1:
-        model = BuildAI(model)
 
-        chat = model.start_chat(history=[])
+option = 0
+chat = model.start_chat(history=[])
 
-        prompt = input("Esperando prompt: ")
+while option != 3:
+    option = MainMenu()
+    match(option):
+        case 1:
+            model = BuildAI(model)
 
-        while prompt != "Fim":
-            response = chat.send_message(prompt)
-            print(">> ", response.text, "\n")
             prompt = input("Esperando prompt: ")
 
-    case 2:
-        model = configAI()
+            while prompt != "Fim":
+                response = chat.send_message(prompt)
+                print(">> ", response.text, "\n")
+                prompt = input("Esperando prompt: ")
 
-        chat = model.start_chat(history=[])
+        case 2:
+            model = configAI()
 
-        prompt = input("Esperando prompt: ")
-
-        while prompt != "Fim":
-            response = chat.send_message(prompt)
-            print(">> ", response.text, "\n")
             prompt = input("Esperando prompt: ")
 
-
-    case 3:
-        exit()
-    case _:
-        print("Opcão inválida")
+            while prompt != "Fim":
+                response = chat.send_message(prompt)
+                print(">> ", response.text, "\n")
+                prompt = input("Esperando prompt: ")
+                
+        case 3:
+            exit()
+        case _:
+            print("Opcão inválida")
 
 
