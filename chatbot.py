@@ -1,11 +1,10 @@
 import google.generativeai as genai
 import os
-import textwrap
 
 keyUSER = input("Insert your gemini key: ")
 if keyUSER == "help":
     print("Não sabe como conseguir sua gemini key? Sem problemas!")
-    print("")
+    print("Acesse google ai studio(https://ai.google.dev) \n faça login e clique em 'Get API Key'")
 api_key = keyUSER
 
 genai.configure(api_key=api_key)
