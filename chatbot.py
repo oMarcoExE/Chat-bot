@@ -151,5 +151,3 @@ while option != 3:
             exit()
         case _:
             print("Opcão inválida")
-
-
