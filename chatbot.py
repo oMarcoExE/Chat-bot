@@ -5,6 +5,7 @@ keyUSER = input("Insert your gemini key: ")
 if keyUSER == "help":
     print("Não sabe como conseguir sua gemini key? Sem problemas!")
     print("Acesse google ai studio(https://ai.google.dev) \n faça login e clique em 'Get API Key'")
+    keyUSER = input("Qual sua key -> ")
 api_key = keyUSER
 
 genai.configure(api_key=api_key)
@@ -15,7 +16,8 @@ def MainMenu():
     print("---------------------")
     print("1. Construa sua AI(Configure sua AI parte a parte)")
     print("2. Usar AI (modo fácil, apenas utilizea sem complicações)")
-    print("3. Fechar")
+    print("3. Liste os modelos disponiveis")
+    print("4. Fechar")
     print("-----------------------")
     print("\n")
 
@@ -59,7 +61,8 @@ def BuildAI(model):
         case 6: modeloAI = "gemini-1.5-pro"
         case 7: modeloAI = "gemini-1.5-pro-latest"
         case 8: modeloAI = "gemini-pro"
-        case 9: modeloAI = "gemini-pro-vision"
+        case 9:  print("MODELO VISION DESABILITADO") 
+                print("Modelo selecionado - gemini-1.5 pro") modeloAI = "gemini-pro-vision"
         case _: print("Modelo não encontrado.")
 
     print(modeloAI)
@@ -148,6 +151,16 @@ while option != 3:
                 prompt = input("Esperando prompt: ")
                 
         case 3:
+            listModelsAI()
+            print("Modelos com 'pro (1.0/1.5) são sua versoes básicas'")
+            print("Modelos com 'latest' são ós tal modelos em sua ultima versão")
+            print("Modelos com flash, são suas versões rapidas e eficientes e leves")
+            print("Modelos com 'vision' são versões que suportam upload de imagens/videos/arquivos pdfs")
+
+            print("ps: Sistema ainda não suporta upload de arquivos (Modelo vision desabilitado)")
+
+        case 4:
             exit()
+
         case _:
             print("Opcão inválida")
